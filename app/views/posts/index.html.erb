@@ -1,0 +1,29 @@
+<div class="page-header" class="row">
+  <h1>Articles</h1>
+  <%= link_to 'Post a New Article', new_post_path, class: "btn btn-success" %>
+</div>
+  
+<div class="well">
+  <% @posts.each do |post| %>
+    <div class="row">    
+      <div class="span7"
+          <strong><%= post.user.full_name %></strong>
+          <p><%= link_to "#{post.title}", post %><p>
+        
+          <div class="meta">
+            <%= time_ago_in_words(post.created_at) + " ago" %>
+            <span class="admin">
+              <%= link_to 'Edit', edit_post_path(post) %>
+              <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+              <hr />
+            </span>
+          </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<br />
+
+

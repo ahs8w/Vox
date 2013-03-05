@@ -1,0 +1,13 @@
+<div class="page-header"> 
+  <h1><%= @user.full_name %></h1>
+</div>
+
+<% if @posts %>
+  <% @posts.each do |post| %>
+    <div class="well">
+   		<%= link_to "#{post.title}", post %>
+      <hr />
+      <%= time_ago_in_words(post.created_at) %> ago    
+    </div>  
+  <% end %>
+<% end %>
