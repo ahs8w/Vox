@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   def show
     @comment = Comment.find(params[:id])
     @post = @comment.post
-    @rateable = @post.comments.find(params[:id])
+    @rateable = @comment
   end
 
   def create
