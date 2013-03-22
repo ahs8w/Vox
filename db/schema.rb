@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130222214454) do
+ActiveRecord::Schema.define(:version => 20130317185311) do
+
+  create_table "comments", :force => true do |t|
+    t.string   "title"
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.string   "category"
+    t.string   "location"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.text     "content"
+  end
+
+  add_index "comments", ["category"], :name => "index_comments_on_category"
+  add_index "comments", ["location"], :name => "index_comments_on_location"
+  add_index "comments", ["post_id"], :name => "index_comments_on_post_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "posts", :force => true do |t|
     t.string   "title"
@@ -19,9 +35,22 @@ ActiveRecord::Schema.define(:version => 20130222214454) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
+    t.string   "category"
+    t.string   "location"
   end
 
+  add_index "posts", ["category"], :name => "index_posts_on_category"
+  add_index "posts", ["location"], :name => "index_posts_on_location"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
+
+  create_table "ratings", :force => true do |t|
+    t.integer  "value"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.integer  "user_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

@@ -19,3 +19,10 @@ body {
 .alert {
   margin-top: 10px;  
   }
+
+
+
+form.rating_ballot label.rating { cursor: pointer; display: inline; height: 20px; width: 20px; }
+form.rating_ballot label.rating { background-image: url(<% asset_path "star-dim.png" %>); }
+form.rating_ballot label.rating.bright { background-image: url(<% asset_path "star-bright.png" %>); }
+form.rating_ballot label.rating.glow { background-image: url(<% asset_path "star-glow.png" %>); }

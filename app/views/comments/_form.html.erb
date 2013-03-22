@@ -1,0 +1,25 @@
+<div class="dropdown">
+  <% if user_signed_in? %>
+  <%= simple_form_for [@post, @post.comments.build] do |f| %>
+
+  <button class="btn btn-info btn-large dropdown-toggle" data-toggle="dropdown">
+    Respond
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a tabindex="-1"><%= f.input :title %></a></li>
+    <li><a tabindex="-1">
+      <%= f.input :category, collection: ["Additional Information", "Different Perspective", "Comment", "Image"] %>
+    </a></li>
+    <li><a tabindex="-1"><%= f.input :location %></a></li>
+    <li><a tabindex="-1"><%= f.input :content %></a></li>
+    <li class="divider"></li>
+    <li><a tabindex="-1" class="form-actions">
+      <%= f.button :submit %>
+    </a></li>
+  </ul>
+</div>
+
+    <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
+  <% end %>
+  <% end %>

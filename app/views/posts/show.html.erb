@@ -1,20 +1,50 @@
-<p id="notice"><%= notice %></p>
+<div class="row"> </div>
+<div class="row"> </div>
 
-<p>
-  <b><%= @post.user.full_name %></b>
-    
-</p>
+<div class="row">
+  <div class="span6 offset3">
+    <div class="hero-unit" id="Primary">
+      <p>
+        <h2><%= @post.title %></h2>
+        <em><%= @post.user.full_name %></em>
+      </p>
+      
+      <p>
+        <b>Category:</b>
+        <%= @post.category %>
+      </p>
 
-<p>
-  <b>Title:</b>
-  <%= @post.title %>
-</p>
+      <p>
+        <b>Location:</b>
+        <%= @post.location %>
+      </p>
 
-<p>
-  <b>Content:</b>
-  <%= @post.content %>
-</p>
+      <p>
+        <%= @post.content %>
+      </p><br />
+
+      <div id="rating">
+        <%= render "ratings/rating" %>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<div class="row">
+  <%= render @post.comments %>
+</div>
+
+<%= link_to 'Back to article feed', posts_path %>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= render "comments/form" %>
+  </div>
+</div>
+
+<% if current_user.id == @post.user_id %>
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+  <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>

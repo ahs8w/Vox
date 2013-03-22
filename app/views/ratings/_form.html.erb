@@ -1,0 +1,9 @@
+<div class="btn-group" data-toggle="buttons-radio">
+  <% if user_signed_in? %>
+    <%= simple_form_for [@rateable, rating_ballot] do |f| %>
+
+    <%= f.input :value, collection: 1..5, as: :radio_buttons %>
+    <%= f.button :submit %>
+    <% end %>
+  <% end %>
+</div>

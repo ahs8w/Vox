@@ -1,0 +1,8 @@
+<%= div_for(comment, :class => "comments") do %>
+    <div class="well well-small">
+      <p>
+        <%= link_to "#{comment.title}", post_comment_path(comment.post_id, comment.id) %><br/>
+        <em><%= comment.user.full_name %></em>
+      </p>
+    </div>
+<% end %>

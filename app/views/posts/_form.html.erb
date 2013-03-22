@@ -1,7 +1,7 @@
 <%= simple_form_for(@post, html: {class:"form-horizontal"}) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved.</h2>
 
       <ul>
       <% @post.errors.full_messages.each do |msg| %>
@@ -12,6 +12,8 @@
   <% end %>
 
   <%= f.input :title %>
+  <%= f.input :category, collection: ["News", "Commentary", "Writing", "Image"] %>
+  <%= f.input :location %>
   <%= f.input :content %>
   <div class="form-actions">
     <%= f.button :submit %>

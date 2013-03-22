@@ -1,0 +1,31 @@
+<div class="well">
+  <p>
+    <h2>Response to <%= @post.title %></h2>
+  </p>
+  <p>
+    <%= @comment.title %> | <em><%= @comment.user.full_name %></em>
+  </p>
+  <p>
+    <%= @comment.category %> | <%= @comment.location %>
+  </p>
+  <p>
+    <%= @comment.content %>
+  </p>
+  <div id="rating">
+    <%= render "ratings/rating" %>
+  </div>
+  <br/>
+  <% if current_user == @comment.user %>
+    <p>
+      <%= link_to 'Delete Comment', [@comment.post, @comment], :confirm => 'Are you sure?',
+                                                             :method => :delete %>
+    </p>
+  <% end %>
+  <%= link_to 'Back to Article', post_path(@comment.post.id) %>
+</div>
+
+
+
+
+
+  

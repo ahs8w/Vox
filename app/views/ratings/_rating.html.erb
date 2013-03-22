@@ -1,0 +1,17 @@
+<div class="average_rating">
+  <% if @rateable.ratings == [] %>
+    <p>This post has not yet been rated.</p>
+  <% else %>
+    <p>Average Rating: <%= average_rating %></p>
+  <% end %>
+</div>
+
+<% if user_signed_in? && current_user.id != @rateable.user_id %>
+  <% if @rateable.raters.include?(current_user) %>
+    <div class="user_rating">
+      <p>You rated this article: <%= current_user_rating %></p>
+    </div>
+  <% else %>
+    <p>Rate this post: <%= render "ratings/form" %></p>
+  <% end %>
+<% end %>

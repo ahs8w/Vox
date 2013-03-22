@@ -9,10 +9,16 @@ Vox::Application.routes.draw do
     get 'logout', to: 'devise/sessions#destroy', as: :logout
   end
 
-  resources :posts
-    get 'feed', to: 'posts#index', as: :feed
-  get "home/index"
+  resources :posts do
+    resources :ratings, :only => [:create, :new]
+    resources :comments 
+  end
+     
+  resources :comments, :only => [:show] do
+    resources :ratings, :only => [:create, :new]
+  end
 
+  get 'feed', to: 'posts#index', as: :feed
   get '/:id', to: 'profiles#show'
 
   # The priority is based upon order of creation:

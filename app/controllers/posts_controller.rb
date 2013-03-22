@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_filter :authenticate_user!, except: [:index, :show]
 
   # GET /posts
   # GET /posts.json
@@ -17,7 +17,8 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-
+    @rateable = @post
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post }
@@ -86,4 +87,5 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end

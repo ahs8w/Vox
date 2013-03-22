@@ -5,9 +5,20 @@ gem 'rails', '3.2.12'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'devise'
 gem 'simple_form'
+gem 'state_machine'
+gem 'draper'
+gem 'js-routes'
+
+group :development, :test do
+  gem 'sqlite3'
+end
+
+group :test do
+  gem 'shoulda'
+  gem 'factory_girl_rails'
+end
 
 
 # Gems used only for assets and not required
