@@ -5,7 +5,5 @@ class AddCategoryAndLocationToPosts < ActiveRecord::Migration
 
     add_column :posts, :location, :string
     add_index :posts, :location
-
-    remove_column :posts, :type
   end
 end
