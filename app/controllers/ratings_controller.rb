@@ -30,7 +30,7 @@ private
   def parent_url(parent)
     case
       when params[:post_id]then post_url(parent)
-      when params[:comment_id]then comment_url(parent)
+      when params[:comment_id]then :back
     end
   end
   
