@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
-  should have_many(:post_links)
-  should have_many(:sub_posts)
   
   test "that a post requires a title" do
     post = Post.new
@@ -43,18 +41,6 @@ class PostTest < ActiveSupport::TestCase
     post.location = ""
     assert !post.save
     assert !post.errors[:location].empty?
-  end
-
-  test "that no error is raised when trying to access a post's sub_post" do
-    assert_nothing_raised do
-      posts(:one).sub_posts
-    end
-  end
-
-  test "that linking sub_posts to a post works" do
-    posts(:one).sub_posts << posts(:three)
-    posts(:one).sub_posts.reload
-    assert posts(:one).sub_posts.include?(posts(:three))
   end
   
 end

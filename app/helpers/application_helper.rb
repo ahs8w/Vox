@@ -11,16 +11,8 @@ module ApplicationHelper
     end
   end
 
-  def rating_ballot
-    if @rating = current_user.ratings.find_by_rateable_id(params[:id])
-      @rating
-    else
-      current_user.ratings.new
-    end
-  end
-
   def current_user_rating
-    @rating = current_user.ratings.find_by_rateable_id(params[:id])
+    @rating = current_user.ratings.find_by_rateable_type_and_rateable_id("#{@rateable.class}", params[:id])
     @rating.value
   end
 

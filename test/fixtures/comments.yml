@@ -1,0 +1,24 @@
+one:
+  title: MyString
+  content: MyText
+  user: adam
+  category: "category"
+  location: "22935"
+  post: one
+
+  
+two:
+  title: MyString
+  content: MyText
+  user: adam
+  category: "category"
+  location: "22935"
+  post: two
+  
+three:
+  title: "Howdy"
+  content: "Hey ya'll"
+  user: jason
+  category: "category"
+  location: "22935"
+  post: three

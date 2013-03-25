@@ -9,11 +9,15 @@ class RatingsController < ApplicationController
     @rating = @rateable.ratings.build(params[:rating])
     @rating.user_id = current_user.id
       if @rating.save
-        flash[:notice] = "Rating saved."
-        redirect_to parent_url(@rateable)
+        respond_to do |format|
+          format.html { redirect_to parent_url(@rateable), :notice => "Rating saved." }
+          format.js
+        end
       else
-        flash[:error] = "Aack! Something went wrong."
-        redirect_to parent_url(@rateable)
+        respond_to do |format|
+          format.html { redirect_to parent_url(@rateable), :notice => "Aack! Something went wrong." }
+          format.js
+        end
       end
     end
   end
@@ -22,8 +26,8 @@ private
 # find the rateable parent: returns e.g. Post.find(:id)
   def parent_object
     case
-      when params[:post_id]then Post.find_by_id(params[:post_id])
-      when params[:comment_id]then Comment.find_by_id(params[:comment_id])
+      when params[:post_id] then Post.find_by_id(params[:post_id])
+      when params[:comment_id] then Comment.find_by_id(params[:comment_id])
     end
   end
 

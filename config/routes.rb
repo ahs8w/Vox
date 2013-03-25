@@ -14,7 +14,7 @@ Vox::Application.routes.draw do
     resources :comments 
   end
      
-  resources :comments, :only => [:show] do
+  resources :comments, :only => [] do
     resources :ratings, :only => [:create, :new]
   end
 
