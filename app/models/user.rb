@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
                            message: "Must be formatted correctly."                    
                            }
   
+  has_many :images
   
   def full_name
     first_name + " " + last_name
@@ -37,5 +38,28 @@ class User < ActiveRecord::Base
     hash = Digest::MD5.hexdigest(downcased_email)
 
     "http://gravatar.com/avatar/#{hash}"
+  end
+
+  def user_rating
+    value = 0
+    count = 0
+    self.posts.each do |post|
+      if post.ratings.exists? 
+        value += post.average_rating
+        count += 1
+      end
+    end
+    self.comments.each do |comment|
+      if comment.ratings.exists?
+        value += comment.average_rating
+        count += 1
+      end
+    end
+    
+    if count == 0
+      "no rated articles"
+    else
+      (value / count).round(2)
+    end
   end
 end

@@ -1,8 +1,9 @@
 <%= div_for(comment, :class => "comments") do %>
-    <div class="well well-small">
-      <p>
-        <%= link_to "#{comment.title}", post_comment_path(comment.post_id, comment.id) %><br/>
-        <em><%= comment.user.full_name %></em>
-      </p>
+    <div class="span2 well">
+      <%= link_to "#{comment.title}", post_comment_path(comment.post.id, comment.id) %>
+      <% if comment.image? %>
+      <%= link_to(image_tag("#{comment.image_url(:thumb)}", :alt => "#{comment.content}"), post_comment_path(comment.post.id, comment.id)) %>
+      <% end %>
+      <em><%= comment.user.full_name %></em>
     </div>
 <% end %>

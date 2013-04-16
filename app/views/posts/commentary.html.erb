@@ -1,20 +1,16 @@
 <div class="page-header" class="row">
-  <h1>Articles</h1>
+  <h1>Commentary</h1>
   <%= link_to 'Post a New Article', new_post_path, class: "btn btn-success" %>
 </div>
-
- 
+  
 
 <% @posts.each do |post| %>
   <%= div_for(post, :class => "posts") do %>
     <div class="article">
       <div class="row">
-        <div class="span3">
-          <div class="well">
+        <div class="span2">
+          <div class="well">  
             <h5><%= link_to "#{post.title}", post %></h5>
-            <% if post.image? %>
-              <%= link_to(image_tag("#{post.image_url(:thumb)}", :alt => "#{post.content}"), post) %>
-            <% end %> 
             <p><em><%= post.user.full_name %></em> | <%= time_ago_in_words(post.created_at) + " ago" %></p>
           </div>
         </div>
@@ -22,5 +18,3 @@
     </div>
   <% end %>
 <% end %>
-
-

@@ -1,23 +1,24 @@
-<div class="row"> </div>
-<div class="row"> </div>
-
 <div class="row">
   <div class="span6 offset3">
     <div class="hero-unit" id="Primary">
       <p>
         <h2><%= @post.title %></h2>
-        <em><%= @post.user.full_name %></em>
+        <em><%= link_to "#{@post.user.full_name}", profile_path(@post.user.profile_name) %></em>
       </p>
       
       <p>
         <b>Category:</b>
         <%= @post.category %>
       </p>
-
       <p>
         <b>Location:</b>
         <%= @post.location %>
       </p>
+
+      <% if @post.image? %>
+        <!-- Image will return nil if no image in database so add .to_s to make sure it works with image_tag -->
+        <p><%= image_tag @post.image_url.to_s %></p>
+      <% end %>
 
       <p>
         <%= @post.content %>
@@ -26,7 +27,14 @@
       <div id="rating">
         <%= render "ratings/rating" %>
       </div>
-
+      <div class="author-options pull-right">
+        <% if signed_in? %>
+          <% if current_user.id == @post.user_id %>
+            <small><%= link_to 'Edit', edit_post_path(@post) %> |
+            <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %></small>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
@@ -36,17 +44,8 @@
   <%= render @post.comments %>
 </div>
 
-<%= link_to 'Back to article feed', posts_path %>
-
-<div class="row">
-  <div class="span6 offset3">
-    <%= render "comments/form" %>
-  </div>
+<div id="Comment Form">
+  <%= render "comments/form" %>
 </div>
 
-<% if signed_in? %>
-  <% if current_user.id == @post.user_id %>
-    <%= link_to 'Edit', edit_post_path(@post) %> |
-    <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <% end %>
-<% end %>
+

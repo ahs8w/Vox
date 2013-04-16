@@ -1,5 +1,8 @@
 class Post < ActiveRecord::Base
-  attr_accessible :content, :title, :user_id, :category, :location
+  attr_accessible :content, :title, :user_id, :category, :location, :image, :remote_image_url
+  mount_uploader :image, ImageUploader
+
+  default_scope :order => 'updated_at DESC'
   belongs_to :user
 
   has_many :comments, :order => 'updated_at DESC', :dependent => :destroy
@@ -24,7 +27,7 @@ class Post < ActiveRecord::Base
       @total = self.ratings.size
       @value.to_f / @total.to_f
     else
-      "Be the first to rate this article."
+      "This article has not been rated."
     end
   end
 

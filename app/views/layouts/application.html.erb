@@ -8,16 +8,13 @@
 </head>
 <body>
 
-  <div class="navbar navbar-fixed-top navbar-inverse">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="brand" <%= link_to "Droplet", root_path %></a>
-        <ul class="nav">
-          <li><%= link_to "Articles", feed_path %></li>  
-        </ul>    
+  <div class="container-fluid">
+    <div class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <a class="brand" <%= link_to "Droplet", root_path %></a>  
         <ul class="nav pull-right">
           <% if user_signed_in? %>        
-          <li><%= link_to current_user.full_name, edit_user_registration_path %></li>
+          <li><%= link_to current_user.profile_name, profile_path(current_user.profile_name) %></li>
           <li><%= link_to "Log Out", logout_path %></li>
           <% else %>
           <li><%= link_to "Log In", login_path %></li>
@@ -26,19 +23,33 @@
         </ul>
       </div>
     </div>
-  </div>
-  
-  
-  <div class="container">
-    <% flash.each do |type, message| %>
-      <div class="alert <%= flash_class type %>"> 
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%= message %>
+    <div class="row-fluid">
+      <div class="span2">
+        <div class="navbar-inverse" id="navbar-opposite">
+          <div class="navbar-inner">
+            <ul class="nav nav-pills nav-stacked">
+              <li><%= link_to "Top Posts", feed_path %></li>
+              <li><%= link_to "News", news_posts_path %></li>
+              <li><%= link_to "Commentary", commentary_posts_path %></li>
+              <li><%= link_to "Writing", writing_posts_path %></li>
+              <li><%= link_to "Travel", travel_posts_path %></li>
+              <li><%= link_to "Meditations", meditations_posts_path %></li>
+              <li><%= link_to "Images", images_posts_path %></li>
+            </ul>
+          </div>
+        </div>
       </div>
-    <% end %>
-  
-  <%= yield %>
-  </div>
+      <div class="span10">
+      <% flash.each do |type, message| %>
+        <div class="alert <%= flash_class type %>"> 
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= message %>
+        </div>
+      <% end %>
+    
+      <%= yield %>
+      </div>
+    </div>
 
 </body>
 </html>

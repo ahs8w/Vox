@@ -1,4 +1,4 @@
-<div class="average_rating">
+<div class="rating">
   <% if @rateable.ratings == [] %>
     <p>This post has not yet been rated.</p>
   <% else %>
@@ -12,6 +12,9 @@
       <p>You rated this article: <%= current_user_rating %></p>
     </div>
   <% else %>
-    <p>Rate this post: <%= render "ratings/form" %></p>
+    <div class="rating-form">
+      <p>Rate this post: </p>
+      <%= render "ratings/form" %>
+    </div>
   <% end %>
 <% end %>

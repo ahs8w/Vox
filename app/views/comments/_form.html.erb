@@ -1,25 +1,30 @@
-<div class="dropdown">
-  <% if user_signed_in? %>
-  <%= simple_form_for [@post, @post.comments.build] do |f| %>
+<% if user_signed_in? %>
+<%= simple_form_for [@post, @post.comments.build] do |f| %>
 
-  <button class="btn btn-info btn-large dropdown-toggle" data-toggle="dropdown">
-    Respond
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu">
-    <li><a tabindex="-1"><%= f.input :title %></a></li>
-    <li><a tabindex="-1">
-      <%= f.input :category, collection: ["Additional Information", "Different Perspective", "Comment", "Image"] %>
-    </a></li>
-    <li><a tabindex="-1"><%= f.input :location %></a></li>
-    <li><a tabindex="-1"><%= f.input :content %></a></li>
-    <li class="divider"></li>
-    <li><a tabindex="-1" class="form-actions">
-      <%= f.button :submit %>
-    </a></li>
-  </ul>
+<button class="btn btn-info btn-large" data-toggle="modal" data-target="#CommentModal">
+  Respond
+</button>
+
+<div id="CommentModal" class="modal hide fade" tabindex="-1" role="dialog">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>What are your thoughts?</h3>
+  </div>
+  <div class="modal-body">
+    <%= f.input :title %>
+    <%= f.input :category, collection: ["Additional Information", "Another Perspective", "Comment", "Image"] %>
+    <%= f.input :image, as: :file %>
+    <%= f.input :remote_image_url %>
+    <%= f.input :location %>
+    <%= f.input :content %>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <%= f.button :submit %>
+  </div>
+
+  <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
 </div>
 
-    <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
-  <% end %>
-  <% end %>
+<% end %>
+<% end %>

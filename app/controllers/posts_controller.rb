@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
@@ -85,6 +85,60 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to posts_url }
       format.json { head :no_content }
+    end
+  end
+
+  def news
+    @posts = Post.where(:category => "News")
+
+    respond_to do |format|
+      format.html # news.html.erb
+      format.json { render json: @posts }
+    end
+  end
+
+  def writing
+    @posts = Post.where(:category => "Writing")
+
+    respond_to do |format|
+      format.html # writing.html.erb
+      format.json { render json: @posts }
+    end
+  end
+
+  def commentary
+    @posts = Post.where(:category => "Commentary")
+
+    respond_to do |format|
+      format.html # commentary.html.erb
+      format.json { render json: @posts }
+    end
+  end
+
+  def meditations
+    @posts = Post.where(:category => "Meditation")
+
+    respond_to do |format|
+      format.html # meditations.html.erb
+      format.json { render json: @posts }
+    end
+  end
+
+  def travel
+    @posts = Post.where(:category => "Travel")
+
+    respond_to do |format|
+      format.html # travel.html.erb
+      format.json { render json: @posts }
+    end
+  end
+
+  def images
+    @posts = Post.where(:category => "Image")
+
+    respond_to do |format|
+      format.html # images.html.erb
+      format.json { render json: @posts }
     end
   end
 

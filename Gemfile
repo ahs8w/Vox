@@ -11,6 +11,9 @@ gem 'state_machine'
 gem 'draper'
 gem 'js-routes'
 
+gem 'carrierwave'
+gem 'rmagick'
+
 group :development, :test do
   gem 'sqlite3'
 end

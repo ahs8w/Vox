@@ -1,31 +1,36 @@
-<div class="well">
-  <p>
-    <h2>Response to <%= @post.title %></h2>
-  </p>
-  <p>
-    <%= @comment.title %> | <em><%= @comment.user.full_name %></em>
-  </p>
-  <p>
-    <%= @comment.category %> | <%= @comment.location %>
-  </p>
-  <p>
-    <%= @comment.content %>
-  </p>
-  <div id="rating">
-    <%= render "ratings/rating" %>
+<div class="row">
+  <div class="span6 offset3">
+    <div class="hero-unit" id="Primary">
+      <p>
+        <h2>Response to <%= @post.title %></h2>
+      </p>
+      <p>
+        <%= @comment.title %> | <em><%= link_to "#{@comment.user.full_name}", profile_path(@comment.user.profile_name) %></em>
+      </p>
+      <p>
+        <%= @comment.category %> | <%= @comment.location %>
+      </p>
+
+      <% if @comment.image? %>
+        <!-- Image will return nil if no image in database so add .to_s to make sure it works with image_tag -->
+        <p><%= image_tag @comment.image_url.to_s %></p>
+      <% end %>
+      
+      <p>
+        <%= @comment.content %>
+      </p>
+      <div id="rating">
+        <%= render "ratings/rating" %>
+      </div>
+      <br/>
+      <% if current_user == @comment.user %>
+        <p>
+          <%= link_to 'Delete Comment', [@comment.post, @comment], :confirm => 'Are you sure?',
+                                                                 :method => :delete %>
+        </p>
+      <% end %>
+      <h5><%= link_to 'Back to Article', post_path(@comment.post.id) %></h5>
+    </div>
   </div>
-  <br/>
-  <% if current_user == @comment.user %>
-    <p>
-      <%= link_to 'Delete Comment', [@comment.post, @comment], :confirm => 'Are you sure?',
-                                                             :method => :delete %>
-    </p>
-  <% end %>
-  <%= link_to 'Back to Article', post_path(@comment.post.id) %>
 </div>
 
-
-
-
-
-  
