@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :profile_name
   
-  has_many :posts, :order => 'updated_at DESC', :dependent => :nullify
+  has_many :posts, :order => 'updated_at DESC', :dependent => :destroy
 
   has_many :comments, :order => 'updated_at DESC', :dependent => :destroy
   has_many :responses, :through => :posts, :source => :comments
@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
     "http://gravatar.com/avatar/#{hash}"
   end
 
-  def user_rating
+  def profile_rating
     value = 0
     count = 0
     self.posts.each do |post|

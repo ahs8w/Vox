@@ -1,50 +1,32 @@
+<a href="#" data-toggle="modal" data-target="#PasswordModal">Edit Password</a>
 
-<div class="row">
-  <div class="span4">
-    <div class="dropdown">
-      <% if user_signed_in? %>
-      <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, class: "well" }) do |f| %>
-      <%= devise_error_messages! %>
-      <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-        Edit Registration
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <fieldset>
-          <li><a tabindex="-1"><%= f.input :email, :autofocus => true %></a></li>
-          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-          <% end %>
-          <li><a tabindex="-1"><%= f.input :password, :autocomplete => "off" %></a></li>
-          <li><a tabindex="-1"><%= f.input :password_confirmation %></a></li>
-          <li><a tabindex="-1"><%= f.input :current_password %></a></li>
-          <li><a tabindex="-1"><div><%= f.button :submit, "Update" %></div></a></li>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div id="PasswordModal" class="modal hide fade" tabindex="-1" role="dialog">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3>Edit password</h3>
+    </div>
+
+    <div class="modal-body">
+      <%= f.input :email, :autofocus => true %>
       
-          <br/ ><br />
-          <h4>Unhappy with Droplet?</h4>
-        <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>
-        </fieldset>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
-      <% end %>
+
+      <%= f.input :current_password, label: 'Current Password', hint: 'necessary to confirm your changes' %>
+      <%= f.input :password, :autocomplete => "off", label: 'New password' %>
+      <%= f.input :password_confirmation %>
+      <%= f.button :submit %>
+    </div>
+<% end %>
+
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn pull-left">
+        <%= link_to 'Cancel my account', registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+      </button>
     </div>
   </div>
-
-  <div class="span6">   
-    <% if @user.posts || @user.comments %>
-      <legend><%= @user.first_name %>'s posted articles</legend>
-      <% @user.posts.each do |post| %>
-        <div class="well">
-          <%= link_to "#{post.title}", post %> 
-          <small><%= time_ago_in_words(post.created_at) %> ago </small>   
-        </div>  
-      <% end %>
-      <legend><%= @user.first_name %>'s comments</legend>
-      <% @user.comments.each do |comment| %>
-        <div class="well">
-          <%= link_to "#{comment.title}", post_comment_path(comment.post_id, comment.id) %> 
-          <small><%= time_ago_in_words(comment.created_at) %> ago </small>   
-        </div>  
-      <% end %>
-    <% end %>
-  </div>
-</div>

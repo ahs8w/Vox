@@ -29,4 +29,9 @@ module ApplicationHelper
     end
   end
 
+  def current_user_rating
+    @rating = current_user.ratings.find_by_rateable_id_and_rateable_type(params[:id], @rateable.class)
+    @rating.value
+  end
+
 end

@@ -1,9 +1,7 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-
-$("#rating-form").on('click', function() {
-  var form = "<h3>Text</h3>";
-  $(this).closest('.rating-form').append(form);
-  $(this).remove();
+$(document).ready(function() {
+  $(".controls .radio").mouseenter(function() {
+    $(this).after("<p>Rubbish</p>"); 
+  }).mouseleave(function() {
+    $(this).next().remove();
+  });
 });

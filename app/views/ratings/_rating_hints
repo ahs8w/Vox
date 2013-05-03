@@ -1,0 +1,47 @@
+when
+  case "News"
+    1: Rubbish
+    2: Not very informative and/or poorly written
+    3: This is somewhat relevant/informative
+    4: Very relevant and well-written
+    5: This author deserves a pulitzer!
+
+  case "Commentary"
+    1: Ignorant blather
+    2: Unoriginal and/or poorly written
+    3: Interesting point(s)
+    4: Concise, relevant, and well-written
+    5: Really insightful and thought-provoking
+
+  case "Writing" 
+    1: Utterly unreadable
+    2: Unstructured with spelling/grammer errors
+    3: Readable
+    4: Recommendable
+    5: Masterpiece
+
+  case "Travel"
+    1: Irrelevant nonsense
+    2: Useless anecdote or advice
+    3: Interesting/Helpful article
+    4: Great anecdote and useful advice
+    5: This article belongs on the cover of National Geographic
+
+  case "Mediations"
+    1: Foolishness
+    2: Unoriginal
+    3: Thoughtful
+    4: Deep
+    5: Truly wise
+
+  case "Images"
+    1: I've seen better finger paintings...
+    2: Boring
+    3: Interesting shot
+    4: A great image that tells a story
+    5: Next month's cover of National Geographic!
+
+  case "Additional Information"
+    1: Completely Irrelevant
+    2: Basic information
+    3: 

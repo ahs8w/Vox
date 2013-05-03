@@ -2,7 +2,7 @@ Vox::Application.routes.draw do
   root :to => "home#index"
 
   devise_for :users
-  
+
   devise_scope :user do
     get 'register', to: 'devise/registrations#new', as: :register
     get 'login', to: 'devise/sessions#new', as: :login
@@ -27,6 +27,5 @@ Vox::Application.routes.draw do
   end
 
   get 'feed', to: 'posts#index', as: :feed
-  get '/:id', to: 'profiles#show', as: :profile
-  get "profiles/show"
+  get '/:id', to: 'users#show', as: :profile
 end

@@ -25,7 +25,7 @@ class Comment < ActiveRecord::Base
       @total = self.ratings.size
       @value.to_f / @total.to_f
     else
-      "This article has not been rated."
+      "not yet rated"
     end
   end
 end
