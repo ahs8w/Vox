@@ -34,3 +34,83 @@ body {
   border-color: #111111;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff111111', endColorstr='#ff222222', GradientType=0);
 }
+
+.bubble {
+  float: left;
+  text-align: center;
+  overflow: hidden;
+  height: 120px;
+  width: 120px;
+  padding: 1em;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  -webkit-border-radius: 50%;
+     -moz-border-radius: 50%;
+          border-radius: 50%;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.bubble blockquote {
+  border-color: #ddd;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+
+/*concentric circle layout grid: classes must be nested within one another.
+<circular_4>
+  <circular_3>
+    <circular_2>
+      <circular_1>
+      </1>
+    </2>
+  </3>
+</4>*/
+
+/*.circular_4
+{
+width:500px;
+height:500px;
+background-color:transparent;
+border-radius: 100%;
+border: 5px #000 solid;
+}
+
+.circular_3
+{
+width:300px;
+height:300px;
+background-color:transparent;
+border-radius: 100%;
+border: 4px #000 solid;
+position: relative;
+left: 100px;
+top: 100px;
+}
+
+.circular_2
+{
+width:200px;
+height:200px;
+background-color:transparent;
+border-radius: 100%;
+border: 3px #000 solid;
+position: relative;
+left: 50px;
+top: 50px;
+}
+
+.circular_1
+{
+width:50px;
+height:50px;
+background-color:transparent;
+border-radius: 100%;
+border: 2px #000 solid;
+position: relative;
+left: 75px;
+top: 75px;
+}*/

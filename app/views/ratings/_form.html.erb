@@ -1,10 +1,26 @@
 <div class="form-rating">
   <div class="btn-group" data-toggle="buttons-radio">
     <% if user_signed_in? %>
-      <%= simple_form_for [@rateable, current_user.ratings.new] do |f| %>
+      <%= form_for [@rateable, current_user.ratings.new] do |f| %>
 
-      <%= f.input :value, collection: 1..5, as: :radio_buttons %>
-      <%= f.button :submit %>
+      <table>
+        <tr>
+          <td><%= f.label :value, '1', :value => '1' %></td>
+          <td><%= f.label :value, '2', :value => '2' %></td>
+          <td><%= f.label :value, '3', :value => '3' %></td>
+          <td><%= f.label :value, '4', :value => '4' %></td>
+          <td><%= f.label :value, '5', :value => '5' %></td>
+        </tr>
+        <tr>
+          <td><%= f.radio_button :value, '1', :id => "rating_button", :class => "rating_1" %></td>
+          <td><%= f.radio_button :value, '2', :id => "rating_button", :class => "rating_2" %></td>
+          <td><%= f.radio_button :value, '3', :id => "rating_button", :class => "rating_3" %></td>
+          <td><%= f.radio_button :value, '4', :id => "rating_button", :class => "rating_4" %></td>
+          <td><%= f.radio_button :value, '5', :id => "rating_button", :class => "rating_5" %></td>
+        </tr>
+      </table>
+      
+      <%= f.submit %>
       <% end %>
     <% end %>
   </div>

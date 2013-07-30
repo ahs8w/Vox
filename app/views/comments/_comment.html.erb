@@ -1,5 +1,5 @@
 <%= div_for(comment, :class => "comments") do %>
-    <div class="span2 well">
+    <div class="bubble">
       <%= link_to "#{comment.title}", post_comment_path(comment.post.id, comment.id) %>
       <% if comment.image? %>
       <%= link_to(image_tag("#{comment.image_url(:thumb)}", :alt => "#{comment.content}"), post_comment_path(comment.post.id, comment.id)) %>

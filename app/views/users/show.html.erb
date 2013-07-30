@@ -38,8 +38,24 @@
     <% end %>
   </div>
 
-  <div class="span4 pull-right">
+  <div class="span6 pull-right">
     <h4>User Rating: <%= @user.profile_rating %></h4>
+    <br/ >
+
+    <legend>responses to <%= @user.first_name %>'s posts</legend>
+    <% if @user.responses %>
+      <% @user.responses.each do |response| %>
+        <div class="well-small">
+          <%= link_to "#{response.title}", post_comment_path(response.post_id, response.id) %>
+          <small><%= time_ago_in_words(response.created_at) %> ago </small>
+          <span class="pull-right"><%= response.average_rating %></span><br />
+          <% if response.image? %>
+            <%= link_to(image_tag("#{response.image_url(:thumb)}", :alt => "#{response.content}"), post_comment_path(response.post.id, response.id)) %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+
   </div>
   
 </div>
